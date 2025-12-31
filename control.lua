@@ -8,25 +8,12 @@ end
 
 silo_cache = nil
 
-function print_cache()
-    if silo_cache ~= nil then
-        game.print(table_size(silo_cache) .. " silos in cache")
-        for key, silo in pairs(silo_cache) do
-            game.print(key .. " - " .. type(silo))
-        end
-        game.print("=====")
-    else
-        game.print("No silos in cache")
-    end
-end
-
 script.on_nth_tick(60, function(event)
     if silo_cache == nil then
         silo_cache = {}
         for _, silo in pairs(game.surfaces["nauvis"].find_entities_filtered { type = "rocket-silo" }) do
             silo_cache[silo.unit_number] = silo
         end
-        print_cache()
     end
 
     for _, silo in pairs(silo_cache) do
@@ -41,12 +28,10 @@ end)
 
 function silo_created(event)
     silo_cache[event.entity.unit_number] = event.entity
-    print_cache()
 end
 
 function silo_removed(event)
     silo_cache[event.entity.unit_number] = nil
-    print_cache()
 end
 
 script.on_event(defines.events.on_built_entity, silo_created, { { filter = "name", name = "rocket-silo" } })
@@ -55,7 +40,3 @@ script.on_event(defines.events.on_robot_built_entity, silo_created, { { filter =
 script.on_event(defines.events.on_entity_died, silo_removed, { { filter = "name", name = "rocket-silo" } })
 script.on_event(defines.events.on_player_mined_entity, silo_removed, { { filter = "name", name = "rocket-silo" } })
 script.on_event(defines.events.on_robot_mined_entity, silo_removed, { { filter = "name", name = "rocket-silo" } })
-
-commands.add_command("siloes", nil, function(command)
-    print_cache()
-end)
