@@ -1,4 +1,4 @@
-$VERSION = "0.0.1"
+$VERSION = (Get-Content -Raw info.json | ConvertFrom-Json).version
 
 $TMPDIR = "builds/cargo-icbm_$VERSION"
 
