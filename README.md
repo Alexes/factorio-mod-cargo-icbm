@@ -1,4 +1,4 @@
-A mod for videogame [Factoro](factorio.com).
+A mod for videogame [Factoro](https://factorio.com).
 
 Allows using the rocket silo for delivering goods within the same planet, bypassing the space platforms.
 
