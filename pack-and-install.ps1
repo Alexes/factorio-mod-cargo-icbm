@@ -9,5 +9,6 @@ Copy-Item info.json $TMPDIR
 Copy-Item control.lua $TMPDIR
 
 Compress-Archive -Path $TMPDIR -DestinationPath "$TMPDIR.zip" -Force
+# TODO: replace with 7zip to avoid backslashes in paths, which Factorio.com doesn't accept
 
 Copy-Item "$TMPDIR.zip" C:\Users\alexa\AppData\Roaming\Factorio\mods\
