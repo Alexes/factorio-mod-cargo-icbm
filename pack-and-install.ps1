@@ -7,6 +7,7 @@ Remove-Item -Recurse $TMPDIR/*
 
 Copy-Item info.json $TMPDIR
 Copy-Item control.lua $TMPDIR
+Copy-Item thumbnail.png $TMPDIR
 
 Compress-Archive -Path $TMPDIR -DestinationPath "$TMPDIR.zip" -Force
 # TODO: replace with 7zip to avoid backslashes in paths, which Factorio.com doesn't accept
