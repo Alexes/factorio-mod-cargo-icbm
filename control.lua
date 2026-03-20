@@ -11,8 +11,10 @@ silo_cache = nil
 script.on_nth_tick(60, function(event)
     if silo_cache == nil then
         silo_cache = {}
-        for _, silo in pairs(game.surfaces["nauvis"].find_entities_filtered { type = "rocket-silo" }) do
-            silo_cache[silo.unit_number] = silo
+        for _, surface in pairs(game.surfaces) do
+            for _, silo in pairs(surface.find_entities_filtered { type = "rocket-silo" }) do
+                silo_cache[silo.unit_number] = silo
+            end
         end
     end
 
